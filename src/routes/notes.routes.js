@@ -1,0 +1,28 @@
+const { Router } = require("express")
+
+const NotesController = require("../controllers/notesController")
+
+const notesRoutes = Router()
+
+
+// function myMiddleware(request, response, next){
+//     console.log("Você passou pelo Middleware")
+
+//     if(!request.body.isAdmin){
+
+//         return response.json({message: "user unauthorized"})
+//     }
+
+//     next()
+
+// }
+
+// userRoutes.use(myMiddleware) //Desta forma colocamos o middleware em todas as rotas
+
+const notesController = new NotesController()
+
+
+notesRoutes.post("/:user_id", notesController.create)
+notesRoutes.get("/:id", notesController.show)
+
+module.exports = notesRoutes
